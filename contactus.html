@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./img/title code icon wep.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#contact-form").on("submit",function(e){
+e.preventDefault();
+if($("#contact-form [name='firstname']").val() === '')
+{
+$("#contact-form [name='lastname']").css("border","1px solid red");
+}
+else if ($("#contact-form [name='your email']").val() === '')
+{
+$("#contact-form [name='your email']").css("border","1px solid red");
+}
+else
+{
+$("#loading-img").css("display","block");
+var sendData = $( this ).serialize();
+$.ajax({
+type: "POST",
+url: "get_response.php",
+data: sendData,
+success: function(data){
+$("#loading-img").css("display","none");
+$(".response_msg").text(data);
+$(".response_msg").slideDown().fadeOut(3000);
+$("#contact-form").find("input[type=text], input[type=email], textarea").val("");
+}
+});
+}
+});
+$("#contact-form input").blur(function(){
+var checkValue = $(this).val();
+if(checkValue != '')
+{
+$(this).css("border","1px solid #eeeeee");
+}
+});
+});
+
+if(!$("#captcha").val()) {
+$("#captcha-info").html("(required)");
+$("#captcha").css('background-color','#FFFFDF');
+valid = false;
+}
+</script>
+    <title>Contact Us</title>
+</head>
+
+<style>
+    input[type=text], [type=email], select, textarea {
+  width: 100%; /* Full width */
+  padding: 10px; /* Some padding */ 
+  border: 2px solid blueviolet; /* Gray border */
+  border-radius: 5px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 10px; /* Add a top margin */
+  margin-bottom: 10px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+button[type=submit] {
+  background-color: #000000;
+  color: #fdfdfd;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.7s ease;
+}
+
+button[type=submit]:hover {
+    transform: scale(1.1);
+    color: blueviolet;
+  background-color: #000000;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 150px;
+}
+</style>
+<body>
+  <header>
+    <a href="./index.html" class="logo">Saloo</a>
+    <nav class="navdon">
+        <a href="./index.html">Home</a>
+        <a href="./Projects.html">Projects</a>
+        <a href="https://discord.gg/gNyhA24NEZ">Discord</a>
+        <a href="./contactus.html">Contact Us</a>
+    </nav>
+ </header>
+    <div class="container">
+      <h2 class="title">Contact Us</h2>
+        <form name="contact-form" action="" method="post" id="contact-form">
+      
+          <label for="fname">Your Name</label>
+          <input type="text" id="fname" name="your_name" placeholder="Your name.."  required>
+      
+          <label for="exampleInputEmail1">Emil</label>
+          <input type="email" id="Emil" name="your_emil" placeholder="Please write mail..!" required>
+
+          <label for="Phone">Phone</label>
+          <input type="text" id="Phone" name="your_phone" placeholder="Please write phone..!" required>
+
+          <label for="subject">Description</label>
+          <textarea id="comments" name="comments" class="form-control" placeholder="Write something.."  placeholder="Comments" style="height:200px"></textarea>
+
+          <button type="submit" class="btn btn-primary" name="submit" value="Submit" id="submit_form">Submit</button>
+          
+        </form>
+  
+      </div>
+      <div class="response_msg"></div>
+
+      <svg class="editorial"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28 "
+    preserveAspectRatio="none">
+   <defs>
+   <path id="gentle-wave"
+    d="M-160 44c30 0 
+   58-18 88-18s
+   58 18 88 18 
+   58-18 88-18 
+   58 18 88 18
+   v44h-352z" />
+ </defs>
+ <g class="parallax1">
+  <use xlink:href="#gentle-wave" x="50" y="3" fill="#8a2be2"/>
+ </g>
+   <g class="parallax2">
+  <use xlink:href="#gentle-wave" x="50" y="0" fill="#949494"/>
+   </g>
+     <g class="parallax3">
+  <use xlink:href="#gentle-wave" x="50" y="9" fill="##000000"/>
+  </g>
+   <g class="parallax4">
+  <use xlink:href="#gentle-wave" x="50" y="6" fill="#fff"/>  
+ </g>
+</svg>
+
+<footer class="footer">
+  <p class="footer-title">Copyright @<span>Mohamedsaloo</span></p>
+  <div class="social-media">
+    <a href="https://github.com/Mohamedsaloo"><i class="fa-brands fa-github"></i></a>
+    <a href="https://discord.gg/gNyhA24NEZ"><i class="fa-brands fa-discord"></i></a>
+    <a href="https://www.facebook.com/Fakmny"><i class="fa-brands fa-facebook"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>
